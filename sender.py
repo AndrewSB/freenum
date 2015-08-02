@@ -13,7 +13,7 @@ def sendToClient(reciever, content):
 def sendSMS(reciever, content):
     print 'Sending message to ' + str(reciever) + ' with content ' + str(content)
 
-    payload = {'number': reciever, 'message': content)
+    payload = {'number': reciever, 'message': content}
     return requests.post('http://textbelt.com/text', data=payload)
 
 def sendEmail(reciever, content):
