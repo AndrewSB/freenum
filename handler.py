@@ -13,13 +13,13 @@ def handleText(path):
     if request.values.get('Body'):
         print "Recieved Twillio"
         sendToClient(str(path), request.values.get('Body'))
-    elif Session(request.body).initialText:
+    elif Session(request.values.get('Body')).initialText:
         print "Recieved Troppo"
-        sendToClient(str(path), str(Session(request.body).initialText))
+        sendToClient(str(path), str(request.values.get('Body')).initialText))
     else:
         print "Recieved a message, but it seemed to be empty 😳"
         sendToClient(str(path), "Recieved a message, but it seemed to be empty 😳")
     return 'ayy'
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80, debug=True)
