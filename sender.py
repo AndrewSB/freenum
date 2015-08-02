@@ -19,13 +19,11 @@ def sendSMS(reciever, content):
 def sendEmail(reciever, content):
     print 'Sending email to ' + str(reciever) + ' with content ' + str(content)
 
-    msg = MIMEMultipart()
+    msg = MIMEText(content)
     msg['Subject'] = str(content)
     msg['From'] = "freenum@freenum.com"
     msg['To'] = reciever
-    msg.attach(MIMEText(content, 'plain'))
 
     s = smtplib.SMTP('localhost')
-
     s.sendmail("freenum@freenum.com", [reciever], msg.as_string())
     s.quit()
