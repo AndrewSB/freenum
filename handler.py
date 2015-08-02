@@ -10,13 +10,13 @@ app = Flask(__name__)
 def handleText(path):
     if request.values.get('Body'):
         print "Recieved Twillio"
-        sendMessage(str(path), request.values.get('Body'))
+        sendToClient(str(path), request.values.get('Body'))
     else if Session(request.body).initialText:
         print "Recieved Troppo"
-        sendMessage(str(path), str(Session(request.body).initialText))
+        sendToClient(str(path), str(Session(request.body).initialText))
     else:
         print "Recieved a message, but it seemed to be empty 😳"
-        sendMessage(str(path), "Recieved a message, but it seemed to be empty 😳")
+        sendToClient(str(path), "Recieved a message, but it seemed to be empty 😳")
     return 'ayy'
 
 if __name__ == '__main__':
