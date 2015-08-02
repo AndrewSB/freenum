@@ -1,7 +1,7 @@
 import requests
 import smtplib
 from flask import Flask
-from email.mime.text import MIMEMultipart
+from email.mime.text import MIMEText
 
 def sendToClient(reciever, content):
     if '@' in reciever: # the reciever is an email address
@@ -11,11 +11,14 @@ def sendToClient(reciever, content):
 
 
 def sendSMS(reciever, content):
-    payload = {'number': reciever, 'message': content}
     print 'Sending message to ' + str(reciever) + ' with content ' + str(content)
+
+    payload = {'number': reciever, 'message': content)
     return requests.post('http://textbelt.com/text', data=payload)
 
 def sendEmail(reciever, content):
+    print 'Sending email to ' + str(reciever) + ' with content ' + str(content)
+
     msg = MIMEMultipart()
     msg['Subject'] = str(content)
     msg['From'] = "freenum@freenum.com"

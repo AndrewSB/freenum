@@ -1,7 +1,9 @@
+# This Python file uses the following encoding: utf-8
+
 from flask import Flask, request, redirect
 import twilio.twiml
 from tropo import Tropo, Session
-from sender import sendMessage
+from sender import sendToClient
 
 app = Flask(__name__)
 
@@ -11,7 +13,7 @@ def handleText(path):
     if request.values.get('Body'):
         print "Recieved Twillio"
         sendToClient(str(path), request.values.get('Body'))
-    else if Session(request.body).initialText:
+    elif Session(request.body).initialText:
         print "Recieved Troppo"
         sendToClient(str(path), str(Session(request.body).initialText))
     else:
